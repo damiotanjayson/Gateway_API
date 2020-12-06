@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Response;
+use App\Models\UserJob;
 
 
 
@@ -32,9 +33,11 @@ Class UserController extends Controller {
         $rules = [
             'username' => 'required|max:20',
             'password' => 'required|max:20',
+            'job_ID2' => 'required|numeric|min:1|not_in:0',
         ];
         
         $this->validate($request,$rules);
+        $userjob=UserJob::findOrFail($request->job_ID2);
 
         $users = User::create($request->all());
 
@@ -42,6 +45,11 @@ Class UserController extends Controller {
     }
 
     public function updateUser(Request $request, $id){
+        $rules = [
+            'job_ID2' => 'required|numeric|min:1|not_in:0',
+        ];
+        $this->validate($request,$rules);
+        $userjob = UserJob::findOrFail($request->job_ID2);
         $users = User::find($id);
 
         $this->validate($request,$this->val);
@@ -49,12 +57,15 @@ Class UserController extends Controller {
         if($request->input('password') == null){
             $users->username = $request->input('username');
             $request->input = $users->password;
+            $users->job_ID2= $request->job_ID2;
         }else if($request->input('username') == null ){
             $users->password = $request->input('password');
             $request->username = $users->username;
+            $users->job_ID2= $request->job_ID2;
         }else{
             $users->username = $request->input('username');
             $users->password = $request->input('password');
+            $users->job_ID2= $request->job_ID2;
         }
         $users->save();
 

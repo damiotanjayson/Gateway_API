@@ -24,7 +24,9 @@ $router->put('/Update/{id}','userController@updateUser');
 $router->get('/View/{id}','userController@readUser');
 $router->delete('/Delete/{id}','userController@deleteUser');
 
-
+//routes for jobs 2
+$router->get('/usersjob','UserJobController@index');
+$router->get('/userjob/{id}','UserJobController@show'); 
 
 //Login
 $router->get('/login', [

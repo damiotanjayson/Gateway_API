@@ -9,7 +9,7 @@ class User extends Model{
     protected $table = 'user2';
     // column sa table
     protected $fillable = [
-        'username', 'password'
+        'username', 'password', 'job_ID2'
     ];
 
     public $timestamps = false;
