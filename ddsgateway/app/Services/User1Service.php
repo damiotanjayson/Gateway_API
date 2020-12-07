@@ -7,7 +7,6 @@ class User1Service{
     use ConsumesExternalService;
 
     public $baseUri;
-
     public $secret;
     
     public function __construct(){

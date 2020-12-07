@@ -31,4 +31,5 @@ $router->group(['middleware'=>'client.credentials'],function() use ($router){
     $router->put('/users2/{id}','user2Controller@updateUser'); // update user record from ddsbe
     $router->delete('/users2/{id}', 'user2Controller@deleteUser'); //delete record  from ddsbe
 
+
 });
