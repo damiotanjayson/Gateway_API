@@ -49,21 +49,24 @@ Class UserController extends Controller {
         $rules = [
             'job_ID' => 'required|numeric|min:1|not_in:0',
         ];
-        $this->validate($request,$rules);
+        $this->validate($request,$rules); 
         $userjob = UserJob::findOrFail($request->job_ID);
+  
         $users = User::find($id);
 
-        $this->validate($request,$this->val);
         
         if($request->input('password') == null){
             $users->username = $request->input('username');
             $request->input = $users->password;
+            $users->job_ID= $request->job_ID;
         }else if($request->input('username') == null ){
             $users->password = $request->input('password');
             $request->username = $users->username;
+            $users->job_ID= $request->job_ID;
         }else{
             $users->username = $request->input('username');
             $users->password = $request->input('password');
+            $users->job_ID= $request->job_ID;
         }
         $users->save();
 
