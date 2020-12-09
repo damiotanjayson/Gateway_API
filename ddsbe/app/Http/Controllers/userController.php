@@ -13,10 +13,6 @@ Class UserController extends Controller {
     use ApiResponser;
 
     private $request;
-    private $val = [
-        'username' => 'max:20',
-        'password' => 'max:20',
-    ];
 
     public function __construct(Request $request){
         $this->request = $request;

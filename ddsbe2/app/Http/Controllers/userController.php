@@ -12,11 +12,6 @@ Class UserController extends Controller {
     use ApiResponser;
 
     private $request;
-    private $val = [
-        'username' => 'max:20',
-        'password' => 'max:20',
-    ];
-
     public function __construct(Request $request){
         $this->request = $request;
     }
@@ -52,7 +47,6 @@ Class UserController extends Controller {
         $userjob = UserJob::findOrFail($request->job_ID2);
         $users = User::find($id);
 
-        $this->validate($request,$this->val);
         
         if($request->input('password') == null){
             $users->username = $request->input('username');
